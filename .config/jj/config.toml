@@ -1,0 +1,14 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "D. Mitchell Black"
+email = "dmitchellblack@gmail.com"
+
+[ui]
+editor = "nvim"
+diff-editor = "nvim_difftool"
+
+[merge-tools.nvim_difftool]
+program = "nvim"
+edit-args = ["-c", "packadd nvim.difftool", "-d", "$left", "$right"]
+diff-args = [] # Enforce that tool is invalid for generating diffs
