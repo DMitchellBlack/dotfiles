@@ -1,0 +1,18 @@
+# Set theme. See `ghostty +list-themes` for options
+# theme = Catppuccin Macchiato
+theme = Rose Pine Moon
+
+font-size = 12
+desktop-notifications = true
+
+# Primary ASCII coding font
+font-family = "Google Sans Code"
+
+# Fallback fonts for non-ASCII
+font-family = "FiraCode Nerd Font Mono"
+
+shell-integration-features = ssh-env,ssh-terminfo
+
+clipboard-read = allow
+clipboard-write = allow
+
