@@ -6,9 +6,13 @@ email = "dmitchellblack@gmail.com"
 
 [ui]
 editor = "nvim"
-diff-editor = "nvim_difftool"
+default-command = "log"
+diff-editor = ":builtin"
 
-[merge-tools.nvim_difftool]
+[aliases]
+nv-diffedit = ["diffedit", "--tool", "nvim-difftool"]
+
+[merge-tools.nvim-difftool]
 program = "nvim"
 edit-args = ["-c", "packadd nvim.difftool", "-d", "$left", "$right"]
 diff-args = [] # Enforce that tool is invalid for generating diffs
