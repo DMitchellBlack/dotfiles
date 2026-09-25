@@ -103,5 +103,7 @@ return {
     vim.lsp.enable("ts_ls")
     -- The lua-language-server in `lsp/lua_ls.lua`
     vim.lsp.enable("lua_ls")
+    -- The pyright-langserver in `lsp/pyright.lua`
+    vim.lsp.enable("pyright")
   end,
 }
