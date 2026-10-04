@@ -60,7 +60,6 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.updatetime = 1000 -- Controls swap-file write and CursorHold time
 vim.opt.foldlevel = 99
-vim.opt.conceallevel = 2 -- Determine how concealed text is shown
 vim.opt.winborder = "rounded"
 -- Netrw configurations
 vim.g.netrw_alto = 0 -- Preview shown to right
