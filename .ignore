@@ -1,0 +1,7 @@
+!.config/
+!.gitignore
+!.ignore
+!.stow-local-ignore
+!.zprofile
+!.zshenv
+!.zshrc

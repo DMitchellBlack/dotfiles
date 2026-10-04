@@ -16,14 +16,40 @@ export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$HOST"
 [[ -d "${HISTFILE:h}" ]] || mkdir -p "${HISTFILE:h}"
 [[ -d "${ZSH_COMPDUMP:h}" ]] || mkdir -p "${ZSH_COMPDUMP:h}"
 
-# Use vi keybindings
-bindkey -v
+# ----------------------------------------------------------------------
+# Prompt & Keybindings
+# ----------------------------------------------------------------------
+# Two-line prompt: user@full-host + path on line 1, prompt symbol on line 2
+PROMPT=$'%K{#393552}%n@%M%k %B%F{#9ccfd8}%~\n%F{white} %# %b%f%k'
 
-# ----------------------------------------------------------------------
-# Prompt Setup
-# ----------------------------------------------------------------------
-autoload -Uz promptinit; promptinit
-prompt adam1
+# The Z-Shell Line Editor (zle): https://zsh.sourceforge.io/Guide/zshguide04.html
+bindkey -v # Use vi bindings (aliases 'main' keymap to 'viins')
+bindkey -M viins '^?' backward-delete-char # Allow Backspace to delete past insert-mode start
+# bindkey -e # Use emacs (the default) bindings, even if editor is set to vi
+
+# If Ghostty's built-in cursor integration isn't active (e.g. over SSH or in tmux),
+# switch cursor shape between block (vicmd) and bar (viins) in ZLE.
+if [[ "$GHOSTTY_SHELL_FEATURES" != *cursor* ]]; then
+  function zle-keymap-select {
+    if [[ ${KEYMAP} == vicmd ]] || [[ $1 == block ]]; then
+      print -n '\e[2 q'
+    elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ -z ${KEYMAP} ]] || [[ $1 == beam ]]; then
+      print -n '\e[6 q'
+    fi
+  }
+  zle -N zle-keymap-select
+
+  function zle-line-init {
+    print -n '\e[6 q'
+  }
+  zle -N zle-line-init
+
+  # Reset cursor to terminal default before running a command so it doesn't leak
+  function zle-line-finish {
+    print -n '\e[0 q'
+  }
+  zle -N zle-line-finish
+fi
 
 # ----------------------------------------------------------------------
 # Completion System
