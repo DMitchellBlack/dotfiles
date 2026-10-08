@@ -1,6 +1,14 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   {
     "mason-org/mason.nvim",
+    cmd = {
+      "Mason",
+      "MasonInstall",
+      "MasonLog",
+      "MasonUpdate",
+    },
     lazy = true,
     opts = {
       ui = {
@@ -23,13 +31,15 @@ return {
     opts = {
       -- A list of servers to automatically install if they're not already
       -- installed.
-      ensure_instaled = {
+      ensure_installed = {
         -- The Lua language server.
         "lua_ls",
         "ts_ls",
         -- TOML formatter / linter / language server
         "tombi",
       },
+      -- Don't automatically call `vim.lsp.enable()` for installed servers
+      automatic_enable = false,
     },
   },
 }
