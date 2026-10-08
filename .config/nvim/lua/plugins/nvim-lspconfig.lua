@@ -105,5 +105,7 @@ return {
     vim.lsp.enable("lua_ls")
     -- The pyright-langserver in `lsp/pyright.lua`
     vim.lsp.enable("pyright")
+    -- The TOML language server
+    vim.lsp.enable("tombi")
   end,
 }

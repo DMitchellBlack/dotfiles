@@ -27,6 +27,8 @@ return {
         -- The Lua language server.
         "lua_ls",
         "ts_ls",
+        -- TOML formatter / linter / language server
+        "tombi",
       },
     },
   },
