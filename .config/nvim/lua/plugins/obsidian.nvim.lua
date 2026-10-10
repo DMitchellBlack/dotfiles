@@ -20,10 +20,10 @@ local obsidian_real_path =
   vim.fs.normalize(vim.uv.fs_realpath(obsidian_path) or obsidian_path)
 local vault_patterns = obsidian_path == obsidian_real_path
     and { vim.fs.joinpath(obsidian_real_path, "**", "*.md") }
-    or {
-      vim.fs.joinpath(obsidian_path, "**", "*.md"),
-      vim.fs.joinpath(obsidian_real_path, "**", "*.md"),
-    }
+  or {
+    vim.fs.joinpath(obsidian_path, "**", "*.md"),
+    vim.fs.joinpath(obsidian_real_path, "**", "*.md"),
+  }
 
 ---@module 'lazy'
 ---@type LazySpec
@@ -76,9 +76,9 @@ return {
     -- Convert daily note commands to generate weekly notes instead
     daily_notes = {
       enabled = true,
-      folder = "weekly",
-      date_format = "%Yw%W",
-      alias_format = "%Yw%W",
+      folder = "weeklies",
+      date_format = "YYYY[w]WW",
+      alias_format = "YYYY [week] WW",
       default_tags = { "weekly-notes" },
       template = nil,
     },
@@ -101,7 +101,8 @@ return {
     },
   },
   config = function(_, opts)
-    local group = vim.api.nvim_create_augroup("obsidian_conceal", { clear = true })
+    local group =
+      vim.api.nvim_create_augroup("obsidian_conceal", { clear = true })
     vim.api.nvim_create_autocmd("BufEnter", {
       group = group,
       pattern = vault_patterns,
